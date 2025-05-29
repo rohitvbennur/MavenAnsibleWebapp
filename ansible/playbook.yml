@@ -8,7 +8,6 @@
         src: "/var/snap/jenkins/4865/workspace/MavenAnsible-CICD/target/MavenAnsibleWebapp.war"
         dest: "/opt/tomcat/webapps/MavenAnsibleWebapp.war"
         remote_src: no
-    - name:  Restart Tomcat
-      systemd:
-        name: tomcat
-        state: restarted
+    - name: Restart Tomcat (manual installation)
+      become: yes
+      ansible.builtin.shell: "/opt/tomcat/bin/shutdown.sh && /opt/tomcat/bin/startup.sh"
